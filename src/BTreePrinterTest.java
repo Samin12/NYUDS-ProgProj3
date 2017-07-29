@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BTreePrinterTest {
 
@@ -89,7 +87,7 @@ public class BTreePrinterTest {
     }
 }
 
-class Node<T extends Comparable<?>> {
+class Node<T> {
     Node<T> left, right;
     T data;
 
@@ -100,13 +98,15 @@ class Node<T extends Comparable<?>> {
 
 class BTreePrinter {
 
-    public static <T extends Comparable<?>> void printNode(Node<T> root) {
+    public static <T> void printNode(Node<T> root) {
         int maxLevel = BTreePrinter.maxLevel(root);
 
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
     }
 
-    private static <T extends Comparable<?>> void printNodeInternal(List<Node<T>> nodes, int level, int maxLevel) {
+
+
+    private static <T> void printNodeInternal(List<Node<T>> nodes, int level, int maxLevel) {
         if (nodes.isEmpty() || BTreePrinter.isAllElementsNull(nodes))
             return;
 
@@ -167,12 +167,13 @@ class BTreePrinter {
             System.out.print(" ");
     }
 
-    private static <T extends Comparable<?>> int maxLevel(Node<T> node) {
+    private static <T> int maxLevel(Node<T> node) {
         if (node == null)
             return 0;
 
-        return Math.max(BTreePrinter.maxLevel(node.left), BTreePrinter.maxLevel(node.right)) + 1;
+        return 4;
     }
+
 
     private static <T> boolean isAllElementsNull(List<T> list) {
         for (Object object : list) {
